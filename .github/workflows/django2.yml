@@ -27,6 +27,7 @@ jobs:
           mysql version: "8.0"
           mysql database: "simple_django_auth_db"
           mysql port: 3306
+          host port: 3306
           mysql user: "python"
           mysql password: "python123"
           mysql root password: "password"  # ここは適当なパスワードに変更してください
