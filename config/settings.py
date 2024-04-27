@@ -81,7 +81,7 @@ DATABASES = {
         "NAME": "simple_django_auth_db",
         "USER": "python",
         "PASSWORD": "python123",
-        "HOST": "localhost",
+        "HOST": "127.0.0.1",
         "PORT": "3306",
         "TEST": {
             "NAME": "test_simple_django_auth_db",
