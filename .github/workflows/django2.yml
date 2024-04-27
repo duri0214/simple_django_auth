@@ -21,27 +21,25 @@ jobs:
         uses: actions/setup-python@v3
         with:
           python-version: ${{ matrix.python-version }}
-      - name: Setup MySQL
-        uses: mirromutth/mysql-action@v1.1
+      - name: Start MySQL
+        uses: SchipperZ/mysql-action@v1
         with:
-          mysql version: "8.0"
-          mysql database: "simple_django_auth_db"
-          mysql port: 3306
           host port: 3306
-          mysql user: "python"
-          mysql password: "python123"
-          mysql root password: "password"  # ここは適当なパスワードに変更してください
+          container port: 3306
+          mysql version: '8.0'
+          mysql database: 'simple_django_auth_db'
+          mysql root password: 'password'
       - name: Set up
         env:
           ENGINE: django.db.backends.mysql
           NAME: simple_django_auth_db
-          USER: python
-          PASSWORD: python123
+          USER: root
+          PASSWORD: password
           HOST: 127.0.0.1
           PORT: 3306
         run: |
-          echo "CREATE USER '$USER'@'$HOST' IDENTIFIED WITH mysql_native_password BY '$PASSWORD';" | mysql -h $HOST -P $PORT -uroot -p"$MYSQL_ROOT_PASSWORD"
-          echo "GRANT ALL ON $NAME.* TO '$USER'@'$HOST';" | mysql -h $HOST -P $PORT -uroot -p"$MYSQL_ROOT_PASSWORD"
+          echo "CREATE USER '$USER'@'$HOST' IDENTIFIED WITH mysql_native_password BY '$PASSWORD';" | mysql -h $HOST -P $PORT -uroot -p"$PASSWORD"
+          echo "GRANT ALL ON $NAME.* TO '$USER'@'$HOST';" | mysql -h $HOST -P $PORT -uroot -p"$PASSWORD"
           python3 --version
           python3 -m venv venv
           source venv/bin/activate
