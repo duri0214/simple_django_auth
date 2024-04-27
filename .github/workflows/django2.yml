@@ -25,10 +25,10 @@ jobs:
         uses: mirromutth/mysql-action@v1.1
         with:
           mysql version: "8.0"
-          mysql database: "test"
+          mysql database: "simple_django_auth_db"
+          mysql user: "python"
+          mysql password: "python123"
           mysql root password: "password"  # ここは適当なパスワードに変更してください
-          run: |
-            sudo systemctl start mysql
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
